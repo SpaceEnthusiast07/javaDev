@@ -18,3 +18,4 @@ public class MultiplePages extends JFrame implements ActionListener {
     }
 }
 // Yooooooo! Whatsup github!!
+// Oooooo i am editing this from another device!!
