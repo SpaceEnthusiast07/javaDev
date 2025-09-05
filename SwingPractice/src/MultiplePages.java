@@ -18,9 +18,7 @@ public class MultiplePages extends JFrame implements ActionListener {
     }
     
     public static void main (String[] args) {
-        MultiplePages mainWindow = new MultiplePages();
-        mainWindow.add("centre", mainWindow.panel1);
-        
+        MultiplePages mainWindow = new MultiplePages();        
     }
 
     public void actionPerformed(ActionEvent e) {
