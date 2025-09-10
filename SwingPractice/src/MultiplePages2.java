@@ -41,6 +41,5 @@ public class MultiplePages2 implements ActionListener {
 class Sidebar extends JPanel {
     public Sidebar() {
         this.setBackground(new Color(29, 110, 183));
-        this.setSize(MultiplePages2.mainWindow.getSize().width / 3, MultiplePages2.mainWindow.getSize().height);
     }
 }
