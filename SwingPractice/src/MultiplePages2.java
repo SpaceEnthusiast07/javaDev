@@ -1,7 +1,7 @@
 import javax.swing.*;
 import java.awt.event.*;
 import java.awt.GridLayout;
-import java.awt.Color.*;
+import java.awt.Color;
 
 public class MultiplePages2 implements ActionListener {
     // Create a window
@@ -20,12 +20,27 @@ public class MultiplePages2 implements ActionListener {
         mainPanel.setLayout(new GridLayout(1, 2)); // Set layout to grid with 1 row and 2 columns
         mainWindow.add(mainPanel); // Add panel to window
 
-        
+        // Add custom JPanel (Sidebar)
+        Sidebar sidebar = new Sidebar();
+        mainPanel.add(sidebar);
+
+        // Add a content panel
+        JPanel contentPanel = new JPanel();
+        contentPanel.setBackground(new Color(240, 240, 240));
+        mainPanel.add(contentPanel);
 
         mainWindow.setVisible(true); // Make window visible
     }
 
     public void actionPerformed(ActionEvent e) {
         
+    }
+}
+
+
+class Sidebar extends JPanel {
+    public Sidebar() {
+        this.setBackground(new Color(29, 110, 183));
+        this.setSize(MultiplePages2.mainWindow.getSize().width / 3, MultiplePages2.mainWindow.getSize().height);
     }
 }
