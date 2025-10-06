@@ -76,6 +76,9 @@ class KeyboardInput extends JFrame implements KeyListener{
         else if (key.equals("2")) {
             mainPanel.setBackground(new Color(145, 122, 90));
         }
+        else if (key.equals("3")) {
+            mainPanel.setBackground(Color.WHITE);
+        }
     }
 
     // Called after the key is pressed
