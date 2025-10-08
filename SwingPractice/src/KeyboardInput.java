@@ -1,9 +1,6 @@
 import javax.swing.*;
 import javax.swing.border.LineBorder;
-
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.ComponentOrientation;
 import java.awt.Font;
 import java.awt.event.*;
 
@@ -85,7 +82,7 @@ class KeyboardInput extends JFrame implements KeyListener {
     
     public static void main (String[] args) {
         // Initialises a new instance of the KeyboardInput class
-        KeyboardInput mainWindow = new KeyboardInput();
+        new KeyboardInput();
     }
 
     
@@ -93,7 +90,7 @@ class KeyboardInput extends JFrame implements KeyListener {
     // Called when the key is pressed down and is kept being called whilst the key is down
     public void keyPressed(KeyEvent event){
         // Get the key pressed
-        key = event.getKeyText(event.getKeyCode());
+        key = KeyEvent.getKeyText(event.getKeyCode());
 
         // Create the varaible to store the text
         String labelText = "keyPressed: " + key;
@@ -134,7 +131,7 @@ class KeyboardInput extends JFrame implements KeyListener {
 
     // Called when the key is released
     public void keyReleased(KeyEvent event){
-        String labelText = "keyReleased: " + event.getKeyText(event.getKeyCode());
+        String labelText = "keyReleased: " + KeyEvent.getKeyText(event.getKeyCode());
 
         if (key.equals("W")) {
             counter3++;
