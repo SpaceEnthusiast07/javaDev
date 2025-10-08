@@ -1,7 +1,9 @@
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.ComponentOrientation;
 import java.awt.Font;
 import java.awt.event.*;
 
@@ -11,7 +13,7 @@ import java.awt.event.*;
 /////////////////////////////////////////////////////////
 
 
-class KeyboardInput extends JFrame implements KeyListener{
+class KeyboardInput extends JFrame implements KeyListener {
     // Define the main panel
     JPanel mainPanel;
 
@@ -23,13 +25,18 @@ class KeyboardInput extends JFrame implements KeyListener{
 
     // Define the key variable
     String key;
+
+    // Define three counters to see how many times the key is pressed
+    int counter1 = 0;
+    int counter2 = 0;
+    int counter3 = 0;
     
     
     // Constructor
     public KeyboardInput() {
         // Set window title and other attributes
         super("Keyboard Input Test");
-        setSize(600, 600);
+        setSize(600, 300);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         addKeyListener(this);
 
@@ -37,6 +44,7 @@ class KeyboardInput extends JFrame implements KeyListener{
         // Initialise the main panel
         mainPanel = new JPanel();
         mainPanel.setOpaque(true);
+        mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
 
         // Add the panel to the mainWindow
         add(mainPanel);
@@ -47,6 +55,7 @@ class KeyboardInput extends JFrame implements KeyListener{
         keyPressedlabel.setFont(new Font("Consolas", Font.PLAIN, 24));
         keyPressedlabel.setForeground(new Color(123,193,175));
         keyPressedlabel.setBorder(new LineBorder(Color.BLACK, 1, false));
+        keyPressedlabel.setHorizontalAlignment(SwingConstants.CENTER);
 
         keyTypedlabel = new JLabel("Press any key!");
         keyTypedlabel.setFont(new Font("Consolas", Font.PLAIN, 24));
@@ -60,6 +69,7 @@ class KeyboardInput extends JFrame implements KeyListener{
 
         label = new JLabel("Aaaarrrggghhhh!!!!!");
         label.setFont(new Font("Consolas", Font.PLAIN, 48));
+        label.setHorizontalAlignment(SwingConstants.CENTER);
 
 
         // Add them to the mainPanel
@@ -80,15 +90,16 @@ class KeyboardInput extends JFrame implements KeyListener{
 
     
     // Event handelers for the KeyListener interface
-    // Called when the key is pressed down
+    // Called when the key is pressed down and is kept being called whilst the key is down
     public void keyPressed(KeyEvent event){
         // Get the key pressed
         key = event.getKeyText(event.getKeyCode());
-        
-        // Set the text of the label to include the key pressed
-        keyPressedlabel.setText("keyPressed: " + key);
-        label.setText(key);
 
+        // Create the varaible to store the text
+        String labelText = "keyPressed: " + key;
+        
+
+        // Check which key is pressed to change the colour accordingly
         if (key.equals("1")) {
             mainPanel.setBackground(new Color(102,124,156));
         }
@@ -98,15 +109,39 @@ class KeyboardInput extends JFrame implements KeyListener{
         else if (key.equals("3")) {
             mainPanel.setBackground(Color.WHITE);
         }
+        else if (key.equals("W")) {
+            counter1++;
+            labelText += " - " + counter1 + " times";
+        }
+        
+        // Set the text of the label to include the key pressed
+        keyPressedlabel.setText(labelText);
+        label.setText(key);
     }
 
-    // Called after the key is pressed
+    // Called after the key is pressed and is kept being called whilst the key is down
     public void keyTyped(KeyEvent event){
-        keyTypedlabel.setText("keyTyped: " + event.getKeyChar());
+        String labelText = "keyTyped: " + event.getKeyChar();
+
+        if (key.equals("W")) {
+            counter2++;
+            labelText += " - " + counter2 + " times";
+        }
+
+        // Set the text of the label
+        keyTypedlabel.setText(labelText);
     }
 
     // Called when the key is released
     public void keyReleased(KeyEvent event){
-        keyReleasedlabel.setText("keyReleased: " + event.getKeyText(event.getKeyCode()));
+        String labelText = "keyReleased: " + event.getKeyText(event.getKeyCode());
+
+        if (key.equals("W")) {
+            counter3++;
+            labelText += " - " + counter3 + " times";
+        }
+        
+        // Set the text of the label
+        keyReleasedlabel.setText(labelText);
     }
 }
